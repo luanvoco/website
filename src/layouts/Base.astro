@@ -1,0 +1,42 @@
+---
+import '@fontsource/be-vietnam-pro/300.css';
+import '@fontsource/be-vietnam-pro/400.css';
+import '@fontsource/be-vietnam-pro/500.css';
+import '@fontsource/be-vietnam-pro/600.css';
+import '@fontsource/be-vietnam-pro/700.css';
+import '@fontsource/be-vietnam-pro/800.css';
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/700.css';
+import '../styles/global.css';
+import { site } from '../data/site';
+const { title = site.title, description = site.description } = Astro.props;
+---
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://luanvo.co/" />
+    <meta name="theme-color" content="#0B1736" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href="https://luanvo.co/" />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'ProfessionalService',
+      name: 'luanvo.co',
+      url: 'https://luanvo.co',
+      email: site.email,
+      founder: { '@type': 'Person', name: 'Võ Thành Luân' },
+      areaServed: 'VN',
+      sameAs: [site.social.youtube, site.social.facebook, site.social.linkedin],
+    })} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

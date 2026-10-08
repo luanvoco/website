@@ -1,0 +1,512 @@
+---
+import Base from '../layouts/Base.astro';
+import {
+  site, nav, hero, about, aiSolutions, segments, services, process,
+  events, industries, customers, stories, numbers, projects,
+} from '../data/site';
+const fmt = (n: number) => n.toLocaleString('vi-VN');
+const year = new Date().getFullYear();
+---
+<Base>
+  <!-- NAV -->
+  <header class="nav" id="top">
+    <div class="wrap nav-in">
+      <a href="#top" class="logo" aria-label="luanvo.co">luanvo<b>.</b>co</a>
+      <nav class="links" aria-label="Điều hướng chính">
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+      </nav>
+      <a class="btn nav-cta" href={site.booking}>Đặt lịch tư vấn</a>
+      <button class="burger" aria-label="Mở menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+    <nav class="mobile" aria-label="Menu di động">
+      {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+      <a class="btn" href={site.booking}>Đặt lịch tư vấn</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero sec dark dots">
+      <div class="orb"></div>
+      <div class="wrap">
+        <div class="tag mono reveal">// {hero.tag}</div>
+        <h1 class="reveal">{hero.titleA} <span class="grad">{hero.titleHL}</span> {hero.titleB}</h1>
+        <p class="lead reveal">{hero.lead}</p>
+        <div class="cta reveal">
+          <a class="btn" href={site.booking}>Đặt lịch tư vấn →</a>
+          <a class="btn ghost" href="#ai">Xem giải pháp AI</a>
+        </div>
+        <div class="stats">
+          {hero.stats.map((s) => (
+            <div class="stat reveal">
+              <div class="n mono"><span data-count={s.n}>{fmt(s.n)}</span><i>{s.suffix}</i></div>
+              <div class="l">{s.label}</div>
+            </div>
+          ))}
+        </div>
+        <div class="term mono reveal" aria-hidden="true">
+          <span class="p">$</span> luanvo --chan-doan <span class="s">"doanh nghiệp của bạn"</span><br/>
+          <span class="ok">✓</span> Khảo sát hiện trạng · <span class="ok">✓</span> Chọn hệ thống · <span class="ok">✓</span> Ứng dụng AI<span class="cursor">▍</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="sec" id="about">
+      <div class="wrap about">
+        <div class="about-l reveal">
+          <div class="eyebrow">Về Luân Võ</div>
+          <h2 class="h2">{about.heading}</h2>
+          <p class="role mono">{about.role}</p>
+          {about.paragraphs.map((p) => <p class="para">{p}</p>)}
+          <div class="row-links">
+            <a class="btn line" href={site.social.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn line" href={site.social.youtube} target="_blank" rel="noopener">YouTube</a>
+            <a class="btn line" href={site.social.community} target="_blank" rel="noopener">Cộng đồng Base.vn</a>
+          </div>
+        </div>
+        <div class="co reveal">
+          <p class="co-intro">{about.coIntro}</p>
+          <ol>
+            {about.co.map((c, i) => {
+              const w = c.word;
+              return (
+                <li>
+                  <span class="num mono">0{i + 1}</span>
+                  <div>
+                    <div class="w" set:html={w.replace(/^C(O)?/, (m) => `<b>${m}</b>`).replace(/ O/, ' <b>O</b>')} />
+                    <div class="n">{c.note}</div>
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI SOLUTIONS -->
+    <section class="sec dark dots" id="ai">
+      <div class="wrap">
+        <div class="eyebrow reveal">Giải pháp AI · Built with Claude</div>
+        <h2 class="h2 reveal">AI không thay hệ thống của bạn — <span class="grad">AI làm các hệ thống hiểu nhau</span></h2>
+        <p class="sub reveal">Ba nhóm giải pháp được xây và kiểm chứng trên chính công việc tư vấn – triển khai hằng ngày, rồi đóng gói lại cho doanh nghiệp.</p>
+        <div class="ai-grid">
+          {aiSolutions.map((a) => (
+            <article class="ai-card reveal">
+              <div class="ai-no mono">{a.no}</div>
+              <h3>{a.title}</h3>
+              <p>{a.text}</p>
+              <div class="tags">{a.tags.map((t) => <span class="mono">{t}</span>)}</div>
+            </article>
+          ))}
+        </div>
+        <div class="flow reveal" aria-hidden="true">
+          <span>CRM</span><i></i><span>HRM</span><i></i><span class="core mono">AI</span><i></i><span>Quy trình</span><i></i><span>Báo cáo</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SME vs ENTERPRISE -->
+    <section class="sec soft">
+      <div class="wrap">
+        <div class="eyebrow reveal">SME & Enterprise</div>
+        <h2 class="h2 reveal">Mỗi quy mô một bài toán — mỗi bài toán một cách làm</h2>
+        <div class="seg reveal">
+          <div class="seg-col seg-head-empty"></div>
+          <div class="seg-col head"><div class="nm">{segments.sme.name}</div><div class="sb">{segments.sme.sub}</div></div>
+          <div class="seg-col head ent"><div class="nm">{segments.ent.name}</div><div class="sb">{segments.ent.sub}</div></div>
+          {segments.rows.map((r, i) => (
+            <>
+              <div class="seg-col rl mono">{r}</div>
+              <div class="seg-col cell"><span class="m mono">SME</span>{segments.sme.cells[i]}</div>
+              <div class="seg-col cell"><span class="m mono">Enterprise</span>{segments.ent.cells[i]}</div>
+            </>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="sec" id="services">
+      <div class="wrap">
+        <div class="eyebrow reveal">Dịch vụ</div>
+        <h2 class="h2 reveal">Từ chẩn đoán đến vận hành</h2>
+        <div class="svc-grid">
+          {services.map((s) => (
+            <article class="svc reveal">
+              <div class="svc-no mono">{s.no}</div>
+              <h3>{s.title}</h3>
+              <p>{s.text}</p>
+              <a class="more" href={site.booking}>Đặt lịch →</a>
+            </article>
+          ))}
+        </div>
+        <ol class="process reveal">
+          {process.map((p, i) => (
+            <li><span class="mono">{String(i + 1).padStart(2, '0')}</span><b>{p.step}</b><small>{p.text}</small></li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section class="sec soft" id="events">
+      <div class="wrap">
+        <div class="eyebrow reveal">Sự kiện & Diễn giả</div>
+        <h2 class="h2 reveal">Chia sẻ thực chiến về quản trị</h2>
+        <div class="ev-grid">
+          {events.map((e, i) => (
+            <article class={`ev reveal ${e.video ? 'has-v' : ''}`}>
+              {!e.video && <div class="ev-v ph" aria-hidden="true"><span class="mono">{e.cat}</span></div>}
+              {e.video && (
+                <a class="ev-v" href={`https://www.youtube.com/watch?v=${e.video}`} target="_blank" rel="noopener" aria-label={`Xem video: ${e.title}`}>
+                  <img src={`https://i.ytimg.com/vi/${e.video}/hqdefault.jpg`} alt={e.title} loading="lazy" width="480" height="360" />
+                  <span class="play">▶</span>
+                </a>
+              )}
+              <div class="ev-body">
+                <div class="ev-top mono"><span>EVENT · {String(i + 1).padStart(2, '0')}</span><span>{e.cat}</span></div>
+                <h3>{e.title}</h3>
+                <p class="ev-with">{e.with}</p>
+                {e.video
+                  ? <a class="ev-link mono" href={`https://www.youtube.com/watch?v=${e.video}`} target="_blank" rel="noopener">▶ Xem lại trên YouTube</a>
+                  : <span class="ev-link off mono">Video đang cập nhật</span>}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="sec dark dots" id="projects">
+      <div class="wrap">
+        <div class="eyebrow reveal">Dự án tiêu biểu</div>
+        <h2 class="h2 reveal">Những dự án tôi đã trực tiếp đồng hành</h2>
+        <p class="sub reveal">Các dự án chuyển đổi số triển khai cùng Base.vn — từ chuỗi bán lẻ đến tập đoàn năng lượng, sản xuất — được ghi nhận trên báo chí và câu chuyện khách hàng.</p>
+        <div class="pj-grid">
+          {projects.map((p, i) => (
+            <a class={`pj reveal ${i === 0 ? 'feat' : ''}`} href={p.url} target="_blank" rel="noopener">
+              <div class="pj-img"><img src={p.image} alt={`${p.org} — ${p.title}`} loading="lazy" width="960" height="640" /></div>
+              <div class="pj-top mono">
+                <span class="pj-ind">{p.industry}</span>
+                <span class={`pj-scale ${p.scale === 'SME' ? 'sme' : ''}`}>{p.scale}</span>
+                {p.ai && <span class="pj-ai">+ AI</span>}
+              </div>
+              <div class="pj-org">{p.org}</div>
+              <h3>{p.title}</h3>
+              <p>{p.summary}</p>
+              <div class="pj-src mono"><span>{p.source}{p.date && ` · ${p.date}`}</span><span class="arr">Đọc bài ↗</span></div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CUSTOMERS -->
+    <section class="sec" id="customers">
+      <div class="wrap">
+        <div class="eyebrow reveal">Khách hàng</div>
+        <h2 class="h2 reveal">Đồng hành cùng doanh nghiệp ở nhiều lĩnh vực</h2>
+        <div class="ind reveal">{industries.map((x) => <span>{x}</span>)}</div>
+        <div class="logos reveal">{customers.map((c) => <span class="mono">{c}</span>)}<span class="mono more-c">+ 280 doanh nghiệp khác</span></div>
+        <h3 class="st-h reveal">Câu chuyện khách hàng</h3>
+        <div class="st-grid">
+          {stories.map((id) => (
+            <a class="st reveal" href={`https://www.youtube.com/watch?v=${id}`} target="_blank" rel="noopener" aria-label="Xem video câu chuyện khách hàng trên YouTube">
+              <img src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} alt="Câu chuyện khách hàng" loading="lazy" width="480" height="360" />
+              <span class="play">▶</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- NUMBERS -->
+    <section class="sec dark dots nums-sec">
+      <div class="wrap">
+        <div class="nums">
+          {numbers.map((x) => (
+            <div class="num-i reveal"><div class="v mono"><span data-count={x.n}>{fmt(x.n)}</span><i>+</i></div><div class="k">{x.label}</div></div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOKING (Calendly) -->
+    <section class="sec soft" id="booking">
+      <div class="wrap">
+        <div class="eyebrow reveal">Đặt lịch</div>
+        <h2 class="h2 reveal">Chọn thời gian phù hợp với bạn</h2>
+        <p class="sub reveal">Buổi trao đổi trực tuyến — chọn khung giờ trống bên dưới, lịch hẹn sẽ được gửi về email của bạn.</p>
+        <div class="cal reveal">
+          <div class="calendly-inline-widget" data-url={site.calendly} style="min-width:320px;height:700px;"></div>
+          <noscript><a class="btn" href={site.calendly}>Mở Calendly để đặt lịch</a></noscript>
+        </div>
+        <p class="cal-alt">Không hiển thị lịch? <a href={site.calendly} target="_blank" rel="noopener">Mở trang đặt lịch Calendly →</a></p>
+      </div>
+      <script is:inline type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="sec" id="contact">
+      <div class="wrap">
+        <div class="cta-box reveal">
+          <div>
+            <div class="eyebrow">Liên hệ</div>
+            <h2 class="h2">Bạn đang có bài toán quản trị cần lời giải?</h2>
+            <p class="sub">Một buổi trò chuyện để cùng nhìn lại hiện trạng và xác định bước đi tiếp theo — SME hay Enterprise đều được.</p>
+            <div class="cta"><a class="btn" href={site.booking}>Đặt lịch tư vấn →</a><a class="btn line" href={`mailto:${site.email}`}>{site.email}</a></div>
+          </div>
+          <ul class="contact-list mono">
+            <li><span>Email</span><a href={`mailto:${site.email}`}>{site.email}</a></li>
+            <li><span>Zalo</span><a href={site.social.zalo} target="_blank" rel="noopener">zalo.me/luanvoco</a></li>
+            <li><span>YouTube</span><a href={site.social.youtube} target="_blank" rel="noopener">youtube.com/c/luanvoco</a></li>
+            <li><span>Facebook</span><a href={site.social.facebook} target="_blank" rel="noopener">facebook.com/luanvoco</a></li>
+            <li><span>LinkedIn</span><a href={site.social.linkedin} target="_blank" rel="noopener">linkedin.com/in/luanvoco</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot-in">
+      <a href="#top" class="logo">luanvo<b>.</b>co</a>
+      <span>© {year} luanvo.co · Tư vấn quản trị & Giải pháp AI</span>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    const header = document.querySelector('.nav');
+    const burger = document.querySelector('.burger');
+    burger?.addEventListener('click', () => {
+      const open = header!.classList.toggle('open');
+      burger.setAttribute('aria-expanded', String(open));
+    });
+    document.querySelectorAll('.mobile a').forEach((a) => a.addEventListener('click', () => header!.classList.remove('open')));
+    // Nav shadow on scroll
+    const onScroll = () => header!.classList.toggle('scrolled', window.scrollY > 10);
+    window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+    // Reveal + counters
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const count = (el: HTMLElement) => {
+      const to = Number(el.dataset.count); if (reduce || !to) return;
+      const t0 = performance.now(), dur = 1400;
+      const tick = (t: number) => {
+        const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(to * e).toLocaleString('vi-VN');
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        en.target.classList.add('in');
+        en.target.querySelectorAll<HTMLElement>('[data-count]').forEach(count);
+        io.unobserve(en.target);
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+  </script>
+</Base>
+
+<style>
+  /* NAV */
+  .nav { position: sticky; top: 0; z-index: 50; background: rgba(11,23,54,.82); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid transparent; transition: border-color .3s; }
+  .nav.scrolled { border-color: var(--line-dark); }
+  .nav-in { display: flex; align-items: center; gap: 28px; height: 68px; }
+  .logo { font-family: var(--mono); font-weight: 700; font-size: 21px; color: #fff; letter-spacing: -.5px; }
+  .logo b { color: var(--glow); text-shadow: 0 0 12px var(--glow); }
+  .links { display: flex; gap: 24px; margin-left: auto; }
+  .links a { color: var(--on-dark-2); font-size: 14px; font-weight: 500; transition: color .2s; }
+  .links a:hover { color: #fff; }
+  .nav-cta { padding: 9px 16px; font-size: 14px; }
+  .burger { display: none; margin-left: auto; background: none; border: 0; width: 40px; height: 40px; cursor: pointer; }
+  .burger span { display: block; width: 22px; height: 2px; background: #fff; margin: 6px auto; transition: transform .3s; }
+  .nav.open .burger span:first-child { transform: translateY(4px) rotate(45deg); }
+  .nav.open .burger span:last-child { transform: translateY(-4px) rotate(-45deg); }
+  .mobile { display: none; }
+  @media (max-width: 900px) {
+    .links, .nav-cta { display: none; }
+    .burger { display: block; }
+    .nav.open .mobile { display: flex; flex-direction: column; gap: 4px; padding: 8px 20px 20px; }
+    .mobile a:not(.btn) { color: var(--on-dark); padding: 10px 0; border-bottom: 1px solid var(--line-dark); }
+    .mobile .btn { margin-top: 12px; justify-content: center; }
+  }
+
+  /* HERO */
+  .hero { padding: 96px 0 88px; }
+  .orb { position: absolute; width: 640px; height: 640px; right: -180px; top: -220px; background: radial-gradient(circle, rgba(30,136,229,.5), transparent 65%); filter: blur(10px); animation: float 12s ease-in-out infinite; }
+  @keyframes float { 50% { transform: translate(-40px, 30px) scale(1.06); } }
+  .tag { display: inline-block; font-size: 13px; color: var(--glow); border: 1px solid rgba(56,189,248,.4); padding: 6px 14px; border-radius: 99px; margin-bottom: 22px; }
+  h1 { font-weight: 800; font-size: clamp(34px, 5.6vw, 64px); line-height: 1.12; letter-spacing: -1.2px; max-width: 900px; }
+  .lead { font-weight: 300; font-size: clamp(16px, 1.6vw, 19px); color: var(--on-dark-2); max-width: 680px; margin-top: 20px; }
+  .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; }
+  .stat { border: 1px solid var(--line-dark); background: rgba(255,255,255,.03); border-radius: var(--radius); padding: 20px 22px; }
+  .stat .n { font-weight: 700; font-size: clamp(28px, 4vw, 44px); color: #fff; line-height: 1.1; }
+  .stat .n i { font-style: normal; color: var(--glow); }
+  .stat .l { font-size: 14px; color: var(--on-dark-2); margin-top: 6px; }
+  .term { margin-top: 28px; font-size: 13px; color: #CFE3FF; background: rgba(0,0,0,.25); border: 1px solid var(--line-dark); border-radius: 12px; padding: 14px 18px; line-height: 1.9; max-width: 640px; }
+  .term .p { color: var(--glow); } .term .s { color: var(--gold); } .term .ok { color: #4ADE80; }
+  .cursor { animation: blink 1s steps(1) infinite; color: var(--glow); }
+  @keyframes blink { 50% { opacity: 0; } }
+  @media (max-width: 720px) { .stats { grid-template-columns: 1fr; } .hero { padding: 64px 0; } }
+
+  /* ABOUT */
+  .about { display: grid; grid-template-columns: 1.25fr 1fr; gap: 56px; align-items: start; }
+  .role { color: var(--deep); font-size: 14px; margin: 14px 0 18px; }
+  .para { color: var(--ink-2); font-size: 16.5px; margin-top: 12px; }
+  .row-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
+  .row-links .btn { padding: 9px 14px; font-size: 14px; }
+  .co { background: var(--navy); color: var(--on-dark); border-radius: 20px; padding: 28px; position: relative; overflow: hidden; }
+  .co::after { content: ""; position: absolute; width: 260px; height: 260px; right: -90px; bottom: -110px; background: radial-gradient(circle, rgba(56,189,248,.35), transparent 65%); }
+  .co-intro { font-size: 14px; color: var(--on-dark-2); margin-bottom: 14px; }
+  .co ol { list-style: none; display: grid; gap: 4px; position: relative; z-index: 1; }
+  .co li { display: flex; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--line-dark); }
+  .co li:last-child { border: 0; }
+  .co .num { color: var(--glow); font-size: 12px; padding-top: 4px; }
+  .co .w { font-weight: 600; font-size: 17px; }
+  .co .w :global(b) { color: var(--glow); font-weight: 800; }
+  .co .n { font-size: 13px; color: var(--on-dark-2); }
+  @media (max-width: 900px) { .about { grid-template-columns: 1fr; gap: 36px; } }
+
+  /* AI */
+  .ai-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 44px; }
+  .ai-card { border: 1px solid var(--line-dark); background: linear-gradient(180deg, rgba(30,136,229,.12), rgba(255,255,255,.02)); border-radius: var(--radius); padding: 26px; transition: transform .3s, border-color .3s, box-shadow .3s; }
+  .ai-card:hover { transform: translateY(-4px); border-color: rgba(56,189,248,.6); box-shadow: 0 16px 40px rgba(30,136,229,.25); }
+  .ai-no { color: var(--glow); font-size: 13px; }
+  .ai-card h3 { font-size: 20px; font-weight: 700; margin: 10px 0; color: #fff; }
+  .ai-card p { color: var(--on-dark-2); font-size: 15px; }
+  .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 16px; }
+  .tags span { font-size: 11px; color: #CFE3FF; border: 1px solid var(--line-dark); border-radius: 99px; padding: 3px 10px; }
+  .flow { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 44px; flex-wrap: wrap; }
+  .flow span { font-size: 13px; color: var(--on-dark); border: 1px solid var(--line-dark); border-radius: 10px; padding: 8px 14px; background: rgba(255,255,255,.03); }
+  .flow .core { color: var(--navy); background: linear-gradient(90deg, var(--blue), var(--glow)); border: 0; font-weight: 700; box-shadow: 0 0 30px rgba(56,189,248,.6); }
+  .flow i { width: 36px; height: 2px; background: linear-gradient(90deg, transparent, var(--glow), transparent); background-size: 200% 100%; animation: pulse 1.8s linear infinite; }
+  @keyframes pulse { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+  @media (max-width: 900px) { .ai-grid { grid-template-columns: 1fr; } .flow i { width: 16px; } }
+
+  /* SEGMENTS */
+  .seg { display: grid; grid-template-columns: 180px 1fr 1fr; margin-top: 40px; background: #fff; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; }
+  .seg-col { padding: 20px 22px; border-bottom: 1px solid var(--line); }
+  .seg-col.head { background: var(--bg-soft); }
+  .seg-col.head.ent { background: var(--navy); color: #fff; }
+  .seg-col.head .nm { font-weight: 800; font-size: 22px; }
+  .seg-col.head .sb { font-size: 13px; color: var(--ink-3); }
+  .seg-col.head.ent .sb { color: var(--on-dark-2); }
+  .seg-col.rl { font-size: 12px; text-transform: uppercase; letter-spacing: 1.4px; color: var(--deep); }
+  .seg-col.cell { color: var(--ink-2); font-size: 15.5px; }
+  .seg-col .m { display: none; }
+  .seg > :nth-last-child(-n+3) { border-bottom: 0; }
+  @media (max-width: 760px) {
+    .seg { grid-template-columns: 1fr; }
+    .seg-head-empty, .seg-col.head { display: none; }
+    .seg-col.rl { background: var(--bg-soft); padding: 12px 18px; }
+    .seg-col .m { display: block; font-size: 11px; color: var(--blue); letter-spacing: 1px; margin-bottom: 2px; }
+  }
+
+  /* SERVICES */
+  .svc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 40px; }
+  .svc { border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; transition: border-color .3s, box-shadow .3s, transform .3s; }
+  .svc:hover { border-color: var(--blue); box-shadow: 0 14px 36px rgba(30,136,229,.12); transform: translateY(-3px); }
+  .svc-no { font-size: 28px; font-weight: 700; color: var(--blue); }
+  .svc h3 { font-size: 18px; font-weight: 700; margin: 10px 0 8px; line-height: 1.35; }
+  .svc p { color: var(--ink-2); font-size: 14.5px; flex: 1; }
+  .svc .more { margin-top: 16px; color: var(--deep); font-weight: 600; font-size: 14px; }
+  .process { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 28px; border: 1px dashed var(--line); border-radius: var(--radius); }
+  .process li { padding: 18px 20px; display: flex; flex-direction: column; gap: 2px; border-right: 1px dashed var(--line); position: relative; }
+  .process li:last-child { border: 0; }
+  .process span { font-size: 12px; color: var(--blue); }
+  .process b { font-size: 16px; }
+  .process small { color: var(--ink-3); font-size: 13px; }
+  @media (max-width: 960px) { .svc-grid { grid-template-columns: 1fr 1fr; } .process { grid-template-columns: 1fr 1fr; } .process li:nth-child(2) { border-right: 0; } .process li:nth-child(-n+2) { border-bottom: 1px dashed var(--line); } }
+  @media (max-width: 560px) { .svc-grid, .process { grid-template-columns: 1fr; } .process li { border-right: 0; border-bottom: 1px dashed var(--line); } }
+
+  /* EVENTS */
+  .ev-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+  .ev { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); border-top: 3px solid var(--blue); overflow: hidden; display: flex; flex-direction: column; }
+  .ev-body { padding: 22px; display: flex; flex-direction: column; flex: 1; }
+  .ev-v { position: relative; display: block; aspect-ratio: 16/9; background: var(--navy); overflow: hidden; }
+  .ev-v.ph { display: grid; place-items: center; background: radial-gradient(circle at 70% 30%, rgba(30,136,229,.45), transparent 60%), var(--navy); background-image: radial-gradient(rgba(56,189,248,.18) 1px, transparent 1px), radial-gradient(circle at 70% 30%, rgba(30,136,229,.5), transparent 60%); background-size: 18px 18px, auto; }
+  .ev-v.ph span { color: var(--glow); font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; border: 1px solid var(--line-dark); border-radius: 99px; padding: 6px 14px; }
+  .ev-v img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+  .ev-v:hover img { transform: scale(1.05); }
+  .ev-with { color: var(--ink-3); font-size: 13.5px; margin-top: 6px; flex: 1; }
+  .ev-link { margin-top: 14px; font-size: 12.5px; color: var(--deep); font-weight: 700; }
+  .ev-link.off { color: var(--ink-3); font-weight: 400; }
+  .ev-top { display: flex; justify-content: space-between; gap: 10px; font-size: 11px; color: var(--ink-3); letter-spacing: .8px; }
+  .ev h3 { font-size: 17px; font-weight: 700; margin-top: 12px; line-height: 1.4; }
+  @media (max-width: 900px) { .ev-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .ev-grid { grid-template-columns: 1fr; } }
+
+  /* CUSTOMERS */
+  .ind { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+  .ind span { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 99px; padding: 8px 16px; font-size: 14px; font-weight: 500; }
+  .logos { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-top: 22px; }
+  .logos span { border: 1px solid var(--line); border-radius: 12px; padding: 18px 10px; text-align: center; font-weight: 700; font-size: 14px; color: var(--ink-2); }
+  .logos .more-c { color: var(--blue); font-weight: 400; font-size: 12px; display: flex; align-items: center; justify-content: center; }
+  .st-h { font-size: 20px; font-weight: 700; margin-top: 44px; }
+  .st-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
+  .st { position: relative; border-radius: 14px; overflow: hidden; aspect-ratio: 16/9; background: var(--navy); }
+  .st img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s, opacity .3s; opacity: .9; }
+  .st:hover img { transform: scale(1.05); opacity: 1; }
+  .play { position: absolute; inset: 0; margin: auto; width: 54px; height: 54px; border-radius: 50%; background: rgba(30,136,229,.92); color: #fff; display: grid; place-items: center; font-size: 18px; box-shadow: 0 0 24px rgba(56,189,248,.6); }
+  @media (max-width: 900px) { .logos { grid-template-columns: repeat(3, 1fr); } .st-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .logos { grid-template-columns: 1fr 1fr; } .st-grid { grid-template-columns: 1fr; } }
+
+  /* PROJECTS */
+  .pj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+  .pj { display: flex; flex-direction: column; border: 1px solid var(--line-dark); border-radius: var(--radius); padding: 0 24px 24px; overflow: hidden; background: rgba(255,255,255,.03); transition: transform .3s, border-color .3s, box-shadow .3s; }
+  .pj:hover { transform: translateY(-4px); border-color: rgba(56,189,248,.6); box-shadow: 0 16px 40px rgba(30,136,229,.25); }
+  .pj.feat { background: linear-gradient(135deg, rgba(30,136,229,.25), rgba(56,189,248,.06)); }
+  .pj.feat { border-color: rgba(56,189,248,.5); }
+  .pj-img { margin: 0 -24px 18px; aspect-ratio: 16/9; overflow: hidden; background: var(--navy-2); position: relative; }
+  .pj-img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(11,23,54,.55)); }
+  .pj-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+  .pj:hover .pj-img img { transform: scale(1.05); }
+  .pj-top { display: flex; gap: 6px; flex-wrap: wrap; font-size: 11px; }
+  .pj-top span { border: 1px solid var(--line-dark); border-radius: 99px; padding: 3px 10px; color: #CFE3FF; }
+  .pj-top .pj-scale { color: var(--navy); background: var(--glow); border-color: var(--glow); font-weight: 700; }
+  .pj-top .pj-scale.sme { background: transparent; color: var(--glow); }
+  .pj-top .pj-ai { color: var(--navy); background: var(--gold); border-color: var(--gold); font-weight: 700; }
+  .pj-org { margin-top: 16px; font-size: 13px; color: var(--glow); font-weight: 600; letter-spacing: .3px; }
+  .pj h3 { font-size: 18px; font-weight: 700; color: #fff; margin: 6px 0 10px; line-height: 1.35; }
+  .pj p { color: var(--on-dark-2); font-size: 14.5px; flex: 1; }
+  .pj-src { display: flex; justify-content: space-between; gap: 10px; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line-dark); font-size: 12px; color: var(--on-dark-2); }
+  .pj-src .arr { color: var(--glow); white-space: nowrap; }
+  @media (max-width: 900px) { .pj-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .pj-grid { grid-template-columns: 1fr; } }
+
+  /* NUMBERS */
+  .nums-sec { padding: 64px 0; }
+  .nums { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+  .num-i { text-align: center; }
+  .num-i .v { font-size: clamp(30px, 4vw, 46px); font-weight: 700; color: #fff; }
+  .num-i .v i { font-style: normal; color: var(--glow); }
+  .num-i .k { color: var(--on-dark-2); font-size: 14px; }
+  @media (max-width: 760px) { .nums { grid-template-columns: 1fr 1fr; } .num-i:last-child { grid-column: span 2; } }
+
+  /* CONTACT */
+  .cta-box { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: center; border: 1px solid var(--line); border-radius: 24px; padding: 44px; background: linear-gradient(135deg, #fff 55%, #E6EFF9); }
+  .contact-list { list-style: none; font-size: 14px; }
+  .contact-list li { display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .contact-list li:last-child { border: 0; }
+  .contact-list span { color: var(--ink-3); }
+  .contact-list a { color: var(--deep); word-break: break-all; text-align: right; }
+  @media (max-width: 860px) { .cta-box { grid-template-columns: 1fr; padding: 28px 22px; } }
+
+  /* BOOKING */
+  .cal { margin-top: 32px; background: #fff; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; box-shadow: 0 18px 50px rgba(11,23,54,.08); }
+  .cal-alt { margin-top: 14px; font-size: 14px; color: var(--ink-3); }
+  .cal-alt a { color: var(--deep); font-weight: 600; }
+
+  /* FOOTER */
+  .foot { background: var(--navy); color: var(--on-dark-2); padding: 28px 0; font-size: 13px; }
+  .foot-in { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+</style>
