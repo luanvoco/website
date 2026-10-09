@@ -21,6 +21,9 @@ const { title = site.title, description = site.description } = Astro.props;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://luanvo.co/og-image.png" />
+    <meta property="og:locale" content="vi_VN" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta property="og:url" content="https://luanvo.co/" />
     <meta name="theme-color" content="#0B1736" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -28,7 +31,8 @@ const { title = site.title, description = site.description } = Astro.props;
     <script type="application/ld+json" set:html={JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'ProfessionalService',
-      name: 'luanvo.co',
+      name: 'luanvo.co — Luân Võ Company',
+      alternateName: 'Luân Võ Company',
       url: 'https://luanvo.co',
       email: site.email,
       founder: { '@type': 'Person', name: 'Võ Thành Luân' },

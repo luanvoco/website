@@ -1,0 +1,27 @@
+---
+import Base from './Base.astro';
+import { site } from '../data/site';
+const { title, description } = Astro.props;
+const year = new Date().getFullYear();
+---
+<Base title={title} description={description}>
+  <header class="pnav"><div class="wrap pnav-in"><a href="/" class="logo">luanvo<b>.</b>co</a><a class="back" href="/">← Về trang chủ</a></div></header>
+  <main class="wrap page"><slot /></main>
+  <footer class="pfoot"><div class="wrap">© {year} luanvo.co · <a href={`mailto:${site.email}`}>{site.email}</a></div></footer>
+</Base>
+<style>
+  .pnav { background: var(--navy); }
+  .pnav-in { display: flex; justify-content: space-between; align-items: center; height: 64px; }
+  .logo { font-family: var(--mono); font-weight: 700; font-size: 20px; color: #fff; }
+  .logo b { color: var(--glow); text-shadow: 0 0 12px var(--glow); }
+  .back { color: var(--on-dark-2); font-size: 14px; }
+  .page { max-width: 820px; padding-top: 56px; padding-bottom: 80px; }
+  .page :global(h1) { font-size: clamp(30px, 4vw, 42px); font-weight: 800; letter-spacing: -.6px; line-height: 1.2; }
+  .page :global(h2) { font-size: 20px; font-weight: 700; margin: 32px 0 8px; }
+  .page :global(p), .page :global(li) { color: var(--ink-2); font-size: 16px; }
+  .page :global(ul) { padding-left: 20px; display: grid; gap: 6px; margin-top: 6px; }
+  .page :global(a) { color: var(--deep); font-weight: 600; }
+  .page :global(.meta) { font-family: var(--mono); font-size: 13px; color: var(--ink-3); margin-top: 8px; }
+  .pfoot { background: var(--bg-soft); padding: 24px 0; font-size: 13px; color: var(--ink-3); border-top: 1px solid var(--line); }
+  .pfoot a { color: var(--deep); }
+</style>

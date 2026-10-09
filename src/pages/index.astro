@@ -1,9 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
 import {
-  site, nav, hero, about, aiSolutions, segments, services, process,
+  site, nav, hero, company, about, aiSolutions, segments, services, process,
   events, industries, customers, stories, numbers, projects,
-  productsIntro, products, moreProducts, buildProcess, stack,
+  productsIntro, products, moreProducts, buildProcess, stack, commitments, faqs,
 } from '../data/site';
 const fmt = (n: number) => n.toLocaleString('vi-VN');
 const year = new Date().getFullYear();
@@ -52,35 +52,30 @@ const year = new Date().getFullYear();
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section class="sec" id="about">
+    <!-- COMPANY -->
+    <section class="sec" id="company">
       <div class="wrap about">
         <div class="about-l reveal">
-          <div class="eyebrow">Về Luân Võ</div>
-          <h2 class="h2">{about.heading}</h2>
-          <p class="role mono">{about.role}</p>
-          {about.paragraphs.map((p) => <p class="para">{p}</p>)}
+          <div class="eyebrow">{company.eyebrow}</div>
+          <h2 class="h2">{company.title}</h2>
+          {company.paragraphs.map((p, i) => <p class={i === 0 ? 'para lead-p' : 'para'}>{p}</p>)}
           <div class="row-links">
-            <a class="btn line" href={site.social.linkedin} target="_blank" rel="noopener">LinkedIn</a>
-            <a class="btn line" href={site.social.youtube} target="_blank" rel="noopener">YouTube</a>
-            <a class="btn line" href={site.social.community} target="_blank" rel="noopener">Cộng đồng Base.vn</a>
+            <a class="btn" href={site.booking}>Đặt lịch tư vấn →</a>
+            <a class="btn line" href="#products">Xem sản phẩm</a>
           </div>
         </div>
         <div class="co reveal">
           <p class="co-intro">{about.coIntro}</p>
           <ol>
-            {about.co.map((c, i) => {
-              const w = c.word;
-              return (
-                <li>
-                  <span class="num mono">0{i + 1}</span>
-                  <div>
-                    <div class="w" set:html={w.replace(/^C(O)?/, (m) => `<b>${m}</b>`).replace(/ O/, ' <b>O</b>')} />
-                    <div class="n">{c.note}</div>
-                  </div>
-                </li>
-              );
-            })}
+            {about.co.map((c, i) => (
+              <li>
+                <span class="num mono">0{i + 1}</span>
+                <div>
+                  <div class="w" set:html={c.word.replace(/^C(O)?/, (m) => `<b>${m}</b>`).replace(/ O/, ' <b>O</b>')} />
+                  <div class="n">{c.note}</div>
+                </div>
+              </li>
+            ))}
           </ol>
         </div>
       </div>
@@ -161,7 +156,7 @@ const year = new Date().getFullYear();
     <!-- HOW I BUILD -->
     <section class="sec dark dots" id="build">
       <div class="wrap">
-        <div class="eyebrow reveal">Cách tôi xây sản phẩm</div>
+        <div class="eyebrow reveal">Cách chúng tôi xây sản phẩm</div>
         <h2 class="h2 reveal">Từ bài toán đến bản chạy được — <span class="grad">trong vài ngày cùng Claude</span></h2>
         <ol class="bp">
           {buildProcess.map((b, i) => (
@@ -200,13 +195,16 @@ const year = new Date().getFullYear();
       <div class="wrap">
         <div class="eyebrow reveal">Dịch vụ</div>
         <h2 class="h2 reveal">Từ chẩn đoán đến vận hành</h2>
+        <p class="sub reveal">Bốn nhóm dịch vụ có thể triển khai riêng lẻ hoặc kết hợp, tùy giai đoạn của doanh nghiệp.</p>
         <div class="svc-grid">
           {services.map((s) => (
             <article class="svc reveal">
               <div class="svc-no mono">{s.no}</div>
               <h3>{s.title}</h3>
-              <p>{s.text}</p>
-              <a class="more" href={site.booking}>Đặt lịch →</a>
+              <p class="svc-for"><span class="mono">Phù hợp với</span>{s.for}</p>
+              <ul class="svc-inc">{s.includes.map((x) => <li>{x}</li>)}</ul>
+              <div class="svc-del"><span class="mono">Bàn giao</span>{s.deliver}</div>
+              <a class="svc-more" href={site.booking}>Trao đổi về dịch vụ này →</a>
             </article>
           ))}
         </div>
@@ -251,8 +249,8 @@ const year = new Date().getFullYear();
     <section class="sec dark dots" id="projects">
       <div class="wrap">
         <div class="eyebrow reveal">Dự án tiêu biểu</div>
-        <h2 class="h2 reveal">Những dự án tôi đã trực tiếp đồng hành</h2>
-        <p class="sub reveal">Các dự án chuyển đổi số triển khai cùng Base.vn — từ chuỗi bán lẻ đến tập đoàn năng lượng, sản xuất — được ghi nhận trên báo chí và câu chuyện khách hàng.</p>
+        <h2 class="h2 reveal">Kinh nghiệm từ các dự án chuyển đổi số thực tế</h2>
+        <p class="sub reveal">Các dự án triển khai cùng Base.vn — từ chuỗi bán lẻ đến tập đoàn năng lượng, sản xuất — được ghi nhận trên báo chí và câu chuyện khách hàng, là nền tảng kinh nghiệm của luanvo.co.</p>
         <div class="pj-grid">
           {projects.map((p, i) => (
             <div class="pj-wrap reveal">
@@ -305,6 +303,35 @@ const year = new Date().getFullYear();
       </div>
     </section>
 
+    <!-- COMMITMENTS -->
+    <section class="sec soft" id="commitments">
+      <div class="wrap">
+        <div class="eyebrow reveal">Cam kết</div>
+        <h2 class="h2 reveal">Khi làm việc cùng luanvo.co</h2>
+        <div class="cm-grid">
+          {commitments.map((c, i) => (
+            <div class="cm reveal"><span class="mono n">{String(i + 1).padStart(2, '0')}</span><h3>{c.title}</h3><p>{c.text}</p></div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="sec" id="faq">
+      <div class="wrap faq-wrap">
+        <div class="reveal">
+          <div class="eyebrow">Câu hỏi thường gặp</div>
+          <h2 class="h2">Những điều doanh nghiệp thường hỏi</h2>
+          <p class="sub">Chưa thấy câu trả lời bạn cần? Gửi email tới <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+        </div>
+        <div class="faq reveal">
+          {faqs.map((f, i) => (
+            <details open={i === 0}><summary>{f.q}</summary><p>{f.a}</p></details>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <!-- BOOKING (Calendly) -->
     <section class="sec soft" id="booking">
       <div class="wrap">
@@ -343,9 +370,34 @@ const year = new Date().getFullYear();
   </main>
 
   <footer class="foot">
-    <div class="wrap foot-in">
-      <a href="#top" class="logo">luanvo<b>.</b>co</a>
-      <span>© {year} luanvo.co · Tư vấn quản trị & Giải pháp AI</span>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a href="#top" class="logo">luanvo<b>.</b>co</a>
+          <p>Tư vấn quản trị & xây dựng giải pháp AI cho doanh nghiệp Việt Nam — từ SME đến Enterprise.</p>
+          <a class="btn" href={site.booking}>Đặt lịch tư vấn</a>
+        </div>
+        <div>
+          <h4 class="mono">Khám phá</h4>
+          <a href="#company">Về chúng tôi</a><a href="#ai">Giải pháp AI</a><a href="#products">Sản phẩm</a><a href="#services">Dịch vụ</a><a href="#projects">Dự án</a><a href="#faq">Câu hỏi thường gặp</a>
+        </div>
+        <div>
+          <h4 class="mono">Lĩnh vực</h4>
+          <span>Năng lượng</span><span>Nông nghiệp – Cao su</span><span>Sản xuất</span><span>Bán lẻ – F&B</span><span>ESG – Quản trị</span>
+        </div>
+        <div>
+          <h4 class="mono">Liên hệ</h4>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+          <a href={site.social.zalo} target="_blank" rel="noopener">Zalo</a>
+          <a href={site.social.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+          <a href={site.social.youtube} target="_blank" rel="noopener">YouTube</a>
+          <a href={site.social.facebook} target="_blank" rel="noopener">Facebook</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© {year} luanvo.co · Tư vấn quản trị & Giải pháp AI</span>
+        <a href="/chinh-sach-bao-mat/">Chính sách bảo mật</a>
+      </div>
     </div>
   </footer>
 
@@ -428,6 +480,18 @@ const year = new Date().getFullYear();
   .cursor { animation: blink 1s steps(1) infinite; color: var(--glow); }
   @keyframes blink { 50% { opacity: 0; } }
   @media (max-width: 720px) { .stats { grid-template-columns: 1fr; } .hero { padding: 64px 0; } }
+
+  /* COMPANY */
+  .name-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 36px; }
+  .name-card { border: 1px solid var(--line); border-radius: 20px; padding: 30px; background: linear-gradient(160deg, #fff 60%, #EEF5FD); }
+  .name-card .nm { font-size: clamp(40px, 6vw, 64px); font-weight: 700; color: var(--navy); line-height: 1; letter-spacing: -2px; }
+  .name-card .nm .dot { color: var(--glow); text-shadow: 0 0 14px var(--glow); }
+  .name-card .lb { margin-top: 12px; font-size: 12px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--blue); }
+  .name-card p { margin-top: 10px; color: var(--ink-2); font-size: 16px; }
+  .promise { margin-top: 26px; font-size: clamp(20px, 2.6vw, 28px); font-weight: 700; color: var(--deep); font-style: italic; }
+  @media (max-width: 760px) { .name-grid { grid-template-columns: 1fr; } .name-card { padding: 24px 20px; } }
+
+  .lead-p { font-size: 19px; font-weight: 600; color: var(--ink); }
 
   /* ABOUT */
   .about { display: grid; grid-template-columns: 1.25fr 1fr; gap: 56px; align-items: start; }
@@ -544,7 +608,7 @@ const year = new Date().getFullYear();
   .svc-no { font-size: 28px; font-weight: 700; color: var(--blue); }
   .svc h3 { font-size: 18px; font-weight: 700; margin: 10px 0 8px; line-height: 1.35; }
   .svc p { color: var(--ink-2); font-size: 14.5px; flex: 1; }
-  .svc .more { margin-top: 16px; color: var(--deep); font-weight: 600; font-size: 14px; }
+  .svc .svc-more { margin-top: 16px; color: var(--deep); font-weight: 600; font-size: 14px; }
   .process { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 28px; border: 1px dashed var(--line); border-radius: var(--radius); }
   .process li { padding: 18px 20px; display: flex; flex-direction: column; gap: 2px; border-right: 1px dashed var(--line); position: relative; }
   .process li:last-child { border: 0; }
@@ -636,7 +700,43 @@ const year = new Date().getFullYear();
   .cal-alt { margin-top: 14px; font-size: 14px; color: var(--ink-3); }
   .cal-alt a { color: var(--deep); font-weight: 600; }
 
+  /* SERVICES v2 */
+  .svc-for { font-size: 14px !important; color: var(--ink-2); flex: 0 !important; margin-bottom: 12px; }
+  .svc-for span, .svc-del span { display: block; font-size: 10.5px; letter-spacing: 1.3px; text-transform: uppercase; color: var(--blue); margin-bottom: 3px; }
+  .svc-inc { list-style: none; display: grid; gap: 6px; margin-bottom: 14px; flex: 1; }
+  .svc-inc li { position: relative; padding-left: 16px; font-size: 13.5px; color: var(--ink-2); line-height: 1.5; }
+  .svc-inc li::before { content: "✓"; position: absolute; left: 0; color: var(--blue); font-weight: 700; font-size: 12px; }
+  .svc-del { background: var(--bg-soft); border-radius: 10px; padding: 10px 12px; font-size: 13.5px; font-weight: 600; color: var(--ink); }
+
+  /* COMMITMENTS */
+  .cm-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 36px; }
+  .cm { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+  .cm .n { color: var(--blue); font-size: 13px; }
+  .cm h3 { font-size: 18px; margin: 8px 0 6px; }
+  .cm p { color: var(--ink-2); font-size: 14.5px; }
+  @media (max-width: 960px) { .cm-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .cm-grid { grid-template-columns: 1fr; } }
+
+  /* FAQ */
+  .faq-wrap { display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; align-items: start; }
+  .faq-wrap .sub a { color: var(--deep); font-weight: 600; }
+  .faq details { border-bottom: 1px solid var(--line); padding: 18px 0; }
+  .faq summary { cursor: pointer; font-weight: 700; font-size: 17px; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; color: var(--blue); font-family: var(--mono); font-size: 20px; line-height: 1; transition: transform .2s; }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq details p { color: var(--ink-2); margin-top: 10px; font-size: 15.5px; }
+  @media (max-width: 860px) { .faq-wrap { grid-template-columns: 1fr; gap: 20px; } }
+
   /* FOOTER */
-  .foot { background: var(--navy); color: var(--on-dark-2); padding: 28px 0; font-size: 13px; }
-  .foot-in { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .foot { background: var(--navy); color: var(--on-dark-2); padding: 56px 0 28px; font-size: 14px; }
+  .foot-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 32px; }
+  .foot-brand p { margin: 12px 0 18px; max-width: 320px; }
+  .foot-brand .btn { padding: 10px 16px; font-size: 14px; }
+  .foot h4 { color: #fff; font-size: 12px; letter-spacing: 1.4px; text-transform: uppercase; margin-bottom: 12px; font-weight: 700; }
+  .foot-grid > div > a:not(.btn):not(.logo), .foot-grid > div > span { display: block; padding: 4px 0; color: var(--on-dark-2); }
+  .foot-grid a:not(.btn):hover { color: #fff; }
+  .foot-bottom { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line-dark); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 13px; }
+  .foot-bottom a:hover { color: #fff; }
+  @media (max-width: 860px) { .foot-grid { grid-template-columns: 1fr 1fr; } .foot-brand { grid-column: span 2; } }
 </style>

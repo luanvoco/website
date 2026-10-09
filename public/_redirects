@@ -1,0 +1,14 @@
+# Link cũ từ website WordPress → mục tương ứng trên website mới
+/myproject/*            /#events     301
+/success_customers/*    /#customers  301
+/success_customers      /#customers  301
+/referral-program/*     /#contact    301
+/referral-program       /#contact    301
+/referral-promax/*      /#contact    301
+/referral-promax        /#contact    301
+/fpt-solutions/*        /#services   301
+/fpt-solutions          /#services   301
+/base-vn-partners/*     /#contact    301
+/base-vn-partners       /#contact    301
+/wp-admin/*             /            301
+/wp-login.php           /            301

@@ -18,12 +18,12 @@ export const site = {
 };
 
 export const nav = [
-  { label: 'Về Luân', href: '#about' },
+  { label: 'Về chúng tôi', href: '#company' },
   { label: 'Giải pháp AI', href: '#ai' },
   { label: 'Sản phẩm', href: '#products' },
   { label: 'Dịch vụ', href: '#services' },
-  { label: 'Sự kiện', href: '#events' },
-    { label: 'Khách hàng', href: '#customers' },
+  { label: 'Dự án', href: '#projects' },
+  { label: 'Khách hàng', href: '#customers' },
   { label: 'Liên hệ', href: '#contact' },
 ];
 
@@ -32,7 +32,7 @@ export const hero = {
   titleA: 'Đồng hành cùng doanh nghiệp Việt vận hành',
   titleHL: 'thông minh hơn',
   titleB: 'với Công nghệ & AI',
-  lead: 'Từ SME đến Enterprise — luanvo.co giúp doanh nghiệp chẩn đoán hiện trạng quản trị, chọn đúng hệ thống phần mềm, và xây ứng dụng, dashboard AI theo ngành — từ năng lượng, nông nghiệp đến ESG.',
+  lead: 'luanvo.co là công ty tư vấn quản trị và giải pháp AI cho doanh nghiệp Việt, từ SME đến Enterprise. Chúng tôi chẩn đoán hiện trạng, chọn đúng hệ thống phần mềm và xây ứng dụng, dashboard AI theo ngành — từ năng lượng, nông nghiệp đến ESG.',
   stats: [
     { n: 300, suffix: '+', label: 'Doanh nghiệp đã tư vấn' },
     { n: 7000, suffix: '+', label: 'Giờ làm việc cùng khách hàng' },
@@ -40,15 +40,26 @@ export const hero = {
   ],
 };
 
+export const company = {
+  eyebrow: 'Về chúng tôi',
+  title: 'Về luanvo.co',
+  paragraphs: [
+    'luanvo.co là một công ty tư vấn quản trị và xây dựng giải pháp AI cho doanh nghiệp Việt Nam, từ SME đến Enterprise.',
+    'Với kinh nghiệm hơn 7.000 giờ đồng hành cùng hơn 300 doanh nghiệp trong hành trình chuyển đổi số, luanvo.co định hướng trở thành đơn vị vừa hiểu sâu bài toán quản trị, vừa có năng lực xây công cụ để giải bài toán đó — từ chẩn đoán hiện trạng, chọn đúng hệ thống phần mềm, đến xây ứng dụng và dashboard AI theo từng ngành như năng lượng, nông nghiệp, ESG.',
+    'Chúng tôi làm việc trực tiếp, tận tâm như một người đồng hành và bài bản như một công ty, để mỗi giải pháp không dừng ở bản đề xuất mà được vận hành thật trong doanh nghiệp.',
+  ],
+};
+
 export const about = {
-  heading: 'Xin chào! Tôi là Võ Thành Luân',
+  eyebrow: 'Người sáng lập',
+  heading: 'Võ Thành Luân',
   role: 'Founder luanvo.co · Sales Consultant Manager tại Base.vn',
   paragraphs: [
-    'Tôi đã đồng hành cùng hơn 300 doanh nghiệp — từ SME đến tập đoàn — trong hành trình chuyển đổi số: tối ưu vận hành, quản lý thông tin, quản trị nhân sự và tài chính bằng giải pháp công nghệ.',
-    'Hiện tôi là Sales Consultant Manager tại Base.vn (công ty thành viên Tập đoàn FPT), Admin cộng đồng Base.vn – Hỏi đáp & Chia sẻ, và trực tiếp dẫn dắt đội ngũ tư vấn mới.',
-    'Từ năm 2025, tôi ứng dụng AI (Claude) vào chính công việc tư vấn và triển khai. luanvo.co là nơi tôi đóng gói những gì đã kiểm chứng để mang đến cho nhiều doanh nghiệp hơn.',
+    'Người sáng lập luanvo.co, đã đồng hành cùng hơn 300 doanh nghiệp — từ SME đến tập đoàn — trong hành trình chuyển đổi số: tối ưu vận hành, quản lý thông tin, quản trị nhân sự và tài chính bằng giải pháp công nghệ.',
+    'Anh hiện là Sales Consultant Manager tại Base.vn (công ty thành viên Tập đoàn FPT), Admin cộng đồng Base.vn – Hỏi đáp & Chia sẻ, và trực tiếp dẫn dắt đội ngũ tư vấn mới.',
+    'Từ năm 2025, anh ứng dụng AI (Claude) vào chính công việc tư vấn và triển khai — và thành lập luanvo.co để đóng gói những gì đã kiểm chứng, mang đến cho nhiều doanh nghiệp hơn.',
   ],
-  coIntro: 'Vì sao là "CO"? 4 vai trò gắn với hành trình của tôi:',
+  coIntro: 'Chữ "CO" trong luanvo.co cũng là 4 giá trị chúng tôi theo đuổi:',
   co: [
     { word: 'COach', note: 'Đồng hành và đặt câu hỏi đúng' },
     { word: 'Customer Onboarding', note: 'Đưa khách hàng vào guồng' },
@@ -101,11 +112,52 @@ export const segments = {
 };
 
 export const services = [
-  { no: '01', title: 'Tư vấn quản trị & chuyển đổi số', text: 'Khảo sát hiện trạng quản trị, thiết kế lộ trình và chọn hệ thống phần mềm phù hợp với giai đoạn của doanh nghiệp.' },
-  { no: '02', title: 'Triển khai giải pháp AI', text: 'Xây ứng dụng tích hợp và AI agent theo bài toán riêng — từ thử nghiệm nhỏ đến vận hành thực tế.' },
-  { no: '03', title: 'Đào tạo & Chia sẻ', text: 'Kinh nghiệm từ hơn 200 video và 10 khóa học — workshop cho đội ngũ quản lý về quản trị và ứng dụng AI.' },
-  { no: '04', title: 'Coaching', text: 'Trò chuyện, đặt câu hỏi và hỗ trợ góc nhìn cho người trẻ về những lựa chọn trong công việc và cuộc sống.' },
+  {
+    no: '01',
+    title: 'Chẩn đoán & Lộ trình quản trị',
+    for: 'Doanh nghiệp bắt đầu chuyển đổi số, hoặc đã có phần mềm nhưng vận hành chưa hiệu quả.',
+    includes: ['Khảo sát quy trình, dữ liệu và con người', 'Đánh giá các hệ thống đang sử dụng', 'Xác định điểm nghẽn cần ưu tiên'],
+    deliver: 'Báo cáo hiện trạng & lộ trình chuyển đổi theo giai đoạn',
+  },
+  {
+    no: '02',
+    title: 'Lựa chọn & Triển khai phần mềm quản trị',
+    for: 'Doanh nghiệp cần chọn đúng hệ thống CRM, nhân sự, quy trình, tài chính.',
+    includes: ['Xây dựng bộ yêu cầu nghiệp vụ', 'So sánh và đề xuất giải pháp phù hợp', 'Đồng hành triển khai, đào tạo người dùng'],
+    deliver: 'Bộ yêu cầu, kế hoạch triển khai & tài liệu hướng dẫn',
+  },
+  {
+    no: '03',
+    title: 'Giải pháp AI theo ngành',
+    for: 'Doanh nghiệp muốn tự động hóa nhập liệu, báo cáo, tài liệu hoặc kết nối các hệ thống rời rạc.',
+    includes: ['Dựng bản chạy được (prototype) trên bài toán thật', 'Thử nghiệm với người dùng, đo hiệu quả', 'Tích hợp với hệ thống sẵn có & hỗ trợ vận hành'],
+    deliver: 'Ứng dụng, dashboard hoặc AI agent đưa vào sử dụng',
+  },
+  {
+    no: '04',
+    title: 'Đào tạo & Coaching',
+    for: 'Đội ngũ quản lý và nhân sự cần nâng năng lực quản trị và ứng dụng AI.',
+    includes: ['Workshop quản trị: KPI, OKR, quy trình, nhân sự', 'Đào tạo ứng dụng AI vào công việc hằng ngày', 'Coaching, định hướng cho đội ngũ trẻ'],
+    deliver: 'Nội dung đào tạo, tài liệu & video theo nhu cầu',
+  },
 ];
+
+export const commitments = [
+  { title: 'Bảo mật dữ liệu', text: 'Dữ liệu doanh nghiệp chỉ dùng cho mục đích của dự án. Sẵn sàng ký thỏa thuận bảo mật (NDA) trước khi bắt đầu.' },
+  { title: 'AI có trách nhiệm', text: 'Sử dụng nền tảng AI cấp doanh nghiệp. Bản demo dùng dữ liệu mẫu; dữ liệu thật được xử lý theo phạm vi khách hàng đồng ý.' },
+  { title: 'Phạm vi minh bạch', text: 'Thống nhất rõ mục tiêu, phạm vi và sản phẩm bàn giao trước khi triển khai — không phát sinh mập mờ.' },
+  { title: 'Đồng hành sau bàn giao', text: 'Bàn giao kèm tài liệu, hướng dẫn sử dụng và hỗ trợ trong giai đoạn đầu vận hành.' },
+];
+
+export const faqs = [
+  { q: 'luanvo.co làm việc với doanh nghiệp quy mô nào?', a: 'Cả SME và Enterprise. Với SME, chúng tôi ưu tiên giải pháp tinh gọn, triển khai nhanh. Với doanh nghiệp lớn, chúng tôi khảo sát chuyên sâu và triển khai theo giai đoạn.' },
+  { q: 'Có phải thay toàn bộ phần mềm đang dùng không?', a: 'Không nhất thiết. Phần lớn giải pháp AI của chúng tôi kết nối và tận dụng các hệ thống sẵn có qua API, chỉ đề xuất thay đổi khi hệ thống hiện tại thực sự là điểm nghẽn.' },
+  { q: 'Bao lâu thì có bản demo đầu tiên?', a: 'Với bài toán rõ ràng, chúng tôi thường dựng được bản chạy được trong vài ngày nhờ Claude và Claude Code — đủ để doanh nghiệp trải nghiệm trước khi quyết định đầu tư lớn hơn.' },
+  { q: 'Dữ liệu của doanh nghiệp có an toàn không?', a: 'Dữ liệu chỉ dùng cho dự án, có thể ký NDA, và bản demo luôn dùng dữ liệu mẫu. Dữ liệu thật chỉ được đưa vào khi doanh nghiệp đồng ý và theo đúng phạm vi đã thống nhất.' },
+  { q: 'Chi phí được tính như thế nào?', a: 'Theo phạm vi từng dự án. Sau buổi trao đổi đầu tiên, chúng tôi gửi đề xuất gồm mục tiêu, phạm vi, sản phẩm bàn giao và chi phí cụ thể.' },
+  { q: 'Bắt đầu làm việc như thế nào?', a: 'Đặt lịch một buổi trao đổi ngay trên website. Chúng tôi sẽ cùng nhìn lại hiện trạng và đề xuất bước đi phù hợp nhất.' },
+];
+
 
 export const process = [
   { step: 'Khảo sát', text: 'Hiểu hiện trạng, con người và dữ liệu.' },
@@ -229,8 +281,8 @@ export const projects = [
 // Sản phẩm tiêu biểu xây bằng Claude (bản demo, dữ liệu mẫu)
 export const productsIntro = {
   eyebrow: 'Sản phẩm & Demo · Built with Claude',
-  title: 'Một số sản phẩm tiêu biểu tôi đã xây',
-  sub: 'Mỗi sản phẩm bắt đầu từ một bài toán thật trong quá trình tư vấn. Tôi dùng Claude và Claude Code để dựng nhanh bản chạy được, thử với người dùng, rồi hoàn thiện. Dưới đây là vài ví dụ tiêu biểu — ngoài ra còn nhiều công cụ khác được xây riêng cho từng khách hàng.',
+  title: 'Một số sản phẩm tiêu biểu chúng tôi đã xây',
+  sub: 'Mỗi sản phẩm bắt đầu từ một bài toán thật trong quá trình tư vấn. Chúng tôi dùng Claude và Claude Code để dựng nhanh bản chạy được, thử với người dùng, rồi hoàn thiện. Dưới đây là vài ví dụ tiêu biểu — ngoài ra còn nhiều công cụ khác được xây riêng cho từng khách hàng.',
   note: 'Các bản demo dùng dữ liệu mẫu để minh họa, không phải hệ thống chính thức của khách hàng.',
 };
 
@@ -300,7 +352,7 @@ export const products = [
     type: 'Progressive web app',
     image: '/products/baby-tracker.jpg',
     url: 'https://luanvoco.github.io/Nac/',
-    problem: 'Một dự án cá nhân để chăm con: ghi lại sinh hoạt hằng ngày của bé nhanh, gọn, ngay trên điện thoại — cũng là nơi tôi thử nghiệm cách xây sản phẩm cho người dùng cuối cùng Claude.',
+    problem: 'Một sản phẩm thử nghiệm cho người dùng cá nhân: ghi lại sinh hoạt hằng ngày của bé nhanh, gọn, ngay trên điện thoại — nơi chúng tôi thử nghiệm cách xây sản phẩm cho người dùng cuối cùng Claude.',
     features: [
       'Ghi nhanh bằng một chạm: ăn, ngủ, chơi, tắm, tã ướt, tã bẩn',
       'Xem theo ngày, lịch sử và theo dõi sức khỏe',
