@@ -20,10 +20,10 @@ export const site = {
 export const nav = [
   { label: 'Về Luân', href: '#about' },
   { label: 'Giải pháp AI', href: '#ai' },
+  { label: 'Sản phẩm', href: '#products' },
   { label: 'Dịch vụ', href: '#services' },
   { label: 'Sự kiện', href: '#events' },
-  { label: 'Dự án', href: '#projects' },
-  { label: 'Khách hàng', href: '#customers' },
+    { label: 'Khách hàng', href: '#customers' },
   { label: 'Liên hệ', href: '#contact' },
 ];
 
@@ -32,11 +32,11 @@ export const hero = {
   titleA: 'Đồng hành cùng doanh nghiệp Việt vận hành',
   titleHL: 'thông minh hơn',
   titleB: 'với Công nghệ & AI',
-  lead: 'Từ SME đến Enterprise — luanvo.co giúp doanh nghiệp chẩn đoán hiện trạng quản trị, chọn đúng hệ thống phần mềm và ứng dụng AI vào vận hành hằng ngày.',
+  lead: 'Từ SME đến Enterprise — luanvo.co giúp doanh nghiệp chẩn đoán hiện trạng quản trị, chọn đúng hệ thống phần mềm, và xây ứng dụng, dashboard AI theo ngành — từ năng lượng, nông nghiệp đến ESG.',
   stats: [
     { n: 300, suffix: '+', label: 'Doanh nghiệp đã tư vấn' },
     { n: 7000, suffix: '+', label: 'Giờ làm việc cùng khách hàng' },
-    { n: 200, suffix: '+', label: 'Video đào tạo' },
+    { n: 4, suffix: '+', label: 'Ứng dụng & dashboard AI theo ngành' },
   ],
 };
 
@@ -150,6 +150,7 @@ export const numbers = [
 export const projects = [
   {
     org: 'EVNGENCO3-OPS',
+    demo: '#product-thuy-dien',
     image: '/projects/evngenco3.jpg',
     title: 'Kickoff hành trình chuyển đổi số và ứng dụng AI vào quản trị điều hành',
     summary: 'Trung tâm Dịch vụ Vận hành thuộc Tổng Công ty Phát điện 3 triển khai theo lộ trình cuốn chiếu: chuẩn hóa nhân sự và giao việc, sau đó số hóa 10 quy trình cốt lõi (đấu thầu, mua sắm, thanh toán…) cùng AI Agent.',
@@ -174,6 +175,7 @@ export const projects = [
   },
   {
     org: 'Cao su Bình Thuận',
+    demo: '#product-cao-su',
     image: '/projects/cao-su-binh-thuan.jpg',
     title: 'Kiến tạo không gian làm việc số, tăng tốc quản trị theo định hướng Tập đoàn Cao su Việt Nam',
     summary: 'Số hóa đấu thầu, mua hàng, báo cáo sản lượng mủ và nhân sự; định hướng ứng dụng AI để tự động hóa báo cáo và tính lương từ dữ liệu vận hành.',
@@ -186,6 +188,7 @@ export const projects = [
   },
   {
     org: 'Cao su Tây Ninh Siêm Riệp',
+    demo: '#product-cao-su',
     image: '/projects/tay-ninh-siem-riep.jpg',
     title: 'Bứt phá chuyển đổi số với hệ thống quản trị Base',
     summary: 'Hệ thống quản trị hợp nhất chính thức vận hành ngày 26/11/2025 sau hơn 3 tháng triển khai — bước đi chiến lược trong hiện đại hóa doanh nghiệp.',
@@ -198,6 +201,7 @@ export const projects = [
   },
   {
     org: 'Cao su Chư Sê',
+    demo: '#product-cao-su',
     image: '/projects/chu-se.jpg',
     title: 'Công bố vận hành chính thức hệ thống Base Platform',
     summary: 'Sau 2 tháng triển khai: số hóa nhiều quy trình, hoàn tất thiết lập HRM và bảng lương, đưa nền tảng vào sử dụng cho lãnh đạo và toàn thể nhân viên.',
@@ -221,3 +225,109 @@ export const projects = [
     url: 'https://customers.base.vn/giai-phap-so-cho-noi-dau-trong-van-hanh-cua-doanh-nghiep/',
   },
 ];
+
+// Sản phẩm tiêu biểu xây bằng Claude (bản demo, dữ liệu mẫu)
+export const productsIntro = {
+  eyebrow: 'Sản phẩm & Demo · Built with Claude',
+  title: 'Một số sản phẩm tiêu biểu tôi đã xây',
+  sub: 'Mỗi sản phẩm bắt đầu từ một bài toán thật trong quá trình tư vấn. Tôi dùng Claude và Claude Code để dựng nhanh bản chạy được, thử với người dùng, rồi hoàn thiện. Dưới đây là vài ví dụ tiêu biểu — ngoài ra còn nhiều công cụ khác được xây riêng cho từng khách hàng.',
+  note: 'Các bản demo dùng dữ liệu mẫu để minh họa, không phải hệ thống chính thức của khách hàng.',
+};
+
+export const products = [
+  {
+    slug: 'thuy-dien',
+    name: 'Hệ thống Báo cáo Vận hành Thủy điện',
+    industry: 'Năng lượng',
+    scale: 'Enterprise',
+    type: 'Web app nhập liệu & báo cáo',
+    image: '/products/thuy-dien.jpg',
+    url: 'https://luanvoco.github.io/EVN_BaoCaoVanHanhThuyDien/',
+    problem: 'Báo cáo vận hành hằng ngày của nhà máy thủy điện tổng hợp từ nhiều nguồn — công tơ từng tổ máy, số liệu thủy văn, biểu đồ công suất — thường ghi chép thủ công, mất thời gian đối chiếu và dễ sai sót.',
+    features: [
+      'Nhập liệu theo 5 nhóm: Thông tin & A0 · Chỉ số công tơ · Thủy văn & hồ chứa · Biểu đồ công suất · Sự kiện & ký xác nhận',
+      'Quản lý sản lượng đăng ký và huy động A0, công suất khả dụng cho từng tổ máy (TM1–TM4)',
+      'Chỉ số công tơ xuất tuyến, đầu cực, tự dùng; mực nước thượng lưu, lưu lượng về hồ, dung tích hữu ích và lũy kế',
+      'Biểu đồ công suất 48 chu kỳ × 30 phút cho P (MW) và Q (MVAR)',
+      'Tự tính chỉ số theo thời gian thực: sản lượng thương mại so với kế hoạch ngày, % dung tích hữu ích hồ chứa',
+      'Xuất báo cáo tổng hợp vận hành ngày chỉ với một thao tác',
+    ],
+    stack: ['Claude Code', 'HTML/JS', 'GitHub Pages'],
+  },
+  {
+    slug: 'cao-su',
+    name: 'App Nhập sản lượng mủ cao su từ Nông trường',
+    industry: 'Nông nghiệp – Cao su',
+    scale: 'Enterprise',
+    type: 'Mobile web app cho nhân sự thực địa',
+    image: '/products/cao-su.jpg',
+    url: 'https://nong-truong-cao-su.vercel.app/',
+    problem: 'Sản lượng mủ khai thác mỗi ngày ở nông trường thường ghi sổ tay rồi mới tổng hợp, quy đổi mủ khô bằng tay — số liệu về văn phòng chậm và khó kiểm soát.',
+    features: [
+      'Thiết kế cho điện thoại, dùng ngay tại lô cạo: chọn nông trường → chọn nhân sự thực địa',
+      'Nhập sản lượng 4 loại mủ: mủ nước, mủ tạp, mủ đông, mủ dây (kg)',
+      'Tự động quy đổi mủ quy khô theo chỉ số chuẩn (70%) ngay khi nhập',
+      'Ghi nhận báo cáo cạo thay cho trường hợp nhân sự vắng',
+      'Xác nhận & nộp số, hiển thị trạng thái đồng bộ trực tuyến',
+      'Giao diện lớn, rõ, hạn chế thao tác để công nhân dùng dễ dàng',
+    ],
+    stack: ['Claude Code', 'React', 'Vercel'],
+  },
+  {
+    slug: 'esg',
+    name: 'ESG Governance Dashboard',
+    industry: 'ESG – Quản trị',
+    scale: 'Enterprise',
+    type: 'Dashboard tích hợp đa hệ thống',
+    image: '/products/esg.jpg',
+    url: 'https://luanvoco.github.io/ESG_Dashboard/',
+    problem: 'Doanh nghiệp cần theo dõi và báo cáo ESG theo chuẩn GRI, nhưng dữ liệu môi trường, nhân sự và quản trị nằm rải rác ở nhiều phần mềm khác nhau.',
+    features: [
+      'Điểm sức khỏe ESG tổng hợp và điểm riêng cho từng trụ cột E · S · G',
+      'E — Môi trường (từ VertZéro): phát thải Scope 1/2/3, tỷ lệ quy trình số hóa, hợp đồng ký số',
+      'S — Xã hội (từ Base HRM): tỷ lệ nữ và nữ quản lý, cảnh báo OT, mức hài lòng, tỷ lệ nghỉ việc',
+      'G — Quản trị (từ Base Workflow, Sign): tuân thủ luồng phê duyệt, audit trail, thời gian duyệt, ký cam kết chính sách',
+      'Xu hướng điểm ESG theo quý và trạng thái sẵn sàng kiểm toán theo từng chỉ tiêu GRI (205, 301, 305, 401, 403, 405)',
+      'So sánh trung bình ngành, lịch sử audit, cấu hình chỉ số và xuất báo cáo GRI',
+    ],
+    stack: ['Claude Code', 'HTML/JS', 'Tích hợp dữ liệu'],
+  },
+  {
+    slug: 'baby',
+    name: 'Baby Tracker',
+    industry: 'Ứng dụng cá nhân',
+    scale: 'Side project',
+    type: 'Progressive web app',
+    image: '/products/baby-tracker.jpg',
+    url: 'https://luanvoco.github.io/Nac/',
+    problem: 'Một dự án cá nhân để chăm con: ghi lại sinh hoạt hằng ngày của bé nhanh, gọn, ngay trên điện thoại — cũng là nơi tôi thử nghiệm cách xây sản phẩm cho người dùng cuối cùng Claude.',
+    features: [
+      'Ghi nhanh bằng một chạm: ăn, ngủ, chơi, tắm, tã ướt, tã bẩn',
+      'Xem theo ngày, lịch sử và theo dõi sức khỏe',
+      'Lịch mẫu sinh hoạt và cài đặt riêng cho từng bé',
+    ],
+    stack: ['Claude Code', 'PWA', 'GitHub Pages'],
+  },
+];
+
+export const moreProducts = {
+  title: 'Và nhiều công cụ khác',
+  sub: 'Được xây riêng theo bài toán của từng khách hàng và cho chính công việc tư vấn hằng ngày:',
+  items: [
+    'Tài liệu đề xuất giải pháp dạng HTML tương tác theo từng doanh nghiệp',
+    'Deck thuyết trình và đào tạo xuất bản tại slides.luanvo.co',
+    'Mockup giao diện phần mềm dựng trên dữ liệu thật của khách hàng',
+    'Công cụ tạo báo giá PDF tự động theo cấu trúc gói dịch vụ',
+    'Bộ Claude Skills cho đội ngũ sales: lập kế hoạch quý, soạn email, đề án',
+    'Dashboard báo cáo theo ngành: sản xuất, năng lượng, bán lẻ, nhân sự',
+  ],
+};
+
+export const buildProcess = [
+  { step: 'Hiểu nghiệp vụ', text: 'Khảo sát quy trình, biểu mẫu và người dùng thực tế.' },
+  { step: 'Dựng bản chạy được', text: 'Dùng Claude & Claude Code tạo bản mẫu trong vài ngày, không phải vài tháng.' },
+  { step: 'Thử với người dùng', text: 'Đưa vào tay người dùng thật, chỉnh theo phản hồi.' },
+  { step: 'Tích hợp & vận hành', text: 'Kết nối với hệ thống sẵn có, triển khai và hỗ trợ.' },
+];
+
+export const stack = ['Claude', 'Claude Code', 'Claude API', 'Claude Skills', 'React', 'Astro', 'GitHub', 'Cloudflare', 'Vercel'];

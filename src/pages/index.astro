@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import {
   site, nav, hero, about, aiSolutions, segments, services, process,
   events, industries, customers, stories, numbers, projects,
+  productsIntro, products, moreProducts, buildProcess, stack,
 } from '../data/site';
 const fmt = (n: number) => n.toLocaleString('vi-VN');
 const year = new Date().getFullYear();
@@ -107,6 +108,73 @@ const year = new Date().getFullYear();
       </div>
     </section>
 
+    <!-- PRODUCTS -->
+    <section class="sec soft" id="products">
+      <div class="wrap">
+        <div class="eyebrow reveal">{productsIntro.eyebrow}</div>
+        <h2 class="h2 reveal">{productsIntro.title}</h2>
+        <p class="sub reveal">{productsIntro.sub}</p>
+
+        <div class="prod-list">
+          {products.map((p, i) => (
+            <article class={`prod reveal ${i % 2 ? 'rev' : ''}`} id={`product-${p.slug}`}>
+              <a class="prod-img" href={p.url} target="_blank" rel="noopener" aria-label={`Mở demo ${p.name}`}>
+                <img src={p.image} alt={`Giao diện ${p.name}`} loading="lazy" width="1600" height="1000" />
+                <span class="prod-open mono">Mở demo ↗</span>
+              </a>
+              <div class="prod-body">
+                <div class="prod-tags mono">
+                  <span class="t-ind">{p.industry}</span>
+                  <span class={`t-scale ${p.scale === 'Enterprise' ? 'ent' : ''}`}>{p.scale}</span>
+                  <span>{p.type}</span>
+                </div>
+                <h3>{p.name}</h3>
+                <div class="prod-block">
+                  <div class="lbl mono">Bài toán</div>
+                  <p>{p.problem}</p>
+                </div>
+                <div class="prod-block">
+                  <div class="lbl mono">Sản phẩm làm được gì</div>
+                  <ul>{p.features.map((f) => <li>{f}</li>)}</ul>
+                </div>
+                <div class="prod-foot">
+                  <div class="stack mono">{p.stack.map((s) => <span>{s}</span>)}</div>
+                  <a class="btn" href={p.url} target="_blank" rel="noopener">Xem demo ↗</a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div class="more reveal">
+          <div>
+            <h3>{moreProducts.title}</h3>
+            <p>{moreProducts.sub}</p>
+            <a class="btn" href={site.booking}>Đặt lịch xem demo theo ngành →</a>
+          </div>
+          <ul class="more-list">{moreProducts.items.map((x) => <li>{x}</li>)}</ul>
+        </div>
+        <p class="prod-note mono reveal">* {productsIntro.note}</p>
+      </div>
+    </section>
+
+    <!-- HOW I BUILD -->
+    <section class="sec dark dots" id="build">
+      <div class="wrap">
+        <div class="eyebrow reveal">Cách tôi xây sản phẩm</div>
+        <h2 class="h2 reveal">Từ bài toán đến bản chạy được — <span class="grad">trong vài ngày cùng Claude</span></h2>
+        <ol class="bp">
+          {buildProcess.map((b, i) => (
+            <li class="reveal"><span class="mono n">{String(i + 1).padStart(2, '0')}</span><b>{b.step}</b><p>{b.text}</p></li>
+          ))}
+        </ol>
+        <div class="stack-strip reveal">
+          <span class="mono lbl">Công cụ đang dùng</span>
+          <div>{stack.map((s) => <span class="mono">{s}</span>)}</div>
+        </div>
+      </div>
+    </section>
+
     <!-- SME vs ENTERPRISE -->
     <section class="sec soft">
       <div class="wrap">
@@ -187,7 +255,8 @@ const year = new Date().getFullYear();
         <p class="sub reveal">Các dự án chuyển đổi số triển khai cùng Base.vn — từ chuỗi bán lẻ đến tập đoàn năng lượng, sản xuất — được ghi nhận trên báo chí và câu chuyện khách hàng.</p>
         <div class="pj-grid">
           {projects.map((p, i) => (
-            <a class={`pj reveal ${i === 0 ? 'feat' : ''}`} href={p.url} target="_blank" rel="noopener">
+            <div class="pj-wrap reveal">
+            <a class={`pj ${i === 0 ? 'feat' : ''}`} href={p.url} target="_blank" rel="noopener">
               <div class="pj-img"><img src={p.image} alt={`${p.org} — ${p.title}`} loading="lazy" width="960" height="640" /></div>
               <div class="pj-top mono">
                 <span class="pj-ind">{p.industry}</span>
@@ -199,6 +268,8 @@ const year = new Date().getFullYear();
               <p>{p.summary}</p>
               <div class="pj-src mono"><span>{p.source}{p.date && ` · ${p.date}`}</span><span class="arr">Đọc bài ↗</span></div>
             </a>
+            {p.demo && <a class="pj-demo mono" href={p.demo}>▸ Xem sản phẩm demo liên quan</a>}
+            </div>
           ))}
         </div>
       </div>
@@ -392,6 +463,61 @@ const year = new Date().getFullYear();
   @keyframes pulse { from { background-position: 100% 0; } to { background-position: -100% 0; } }
   @media (max-width: 900px) { .ai-grid { grid-template-columns: 1fr; } .flow i { width: 16px; } }
 
+  /* PRODUCTS */
+  .prod-list { display: grid; gap: 28px; margin-top: 44px; }
+  .prod { display: grid; grid-template-columns: 1.15fr 1fr; gap: 0; background: #fff; border: 1px solid var(--line); border-radius: 22px; overflow: hidden; box-shadow: 0 18px 50px rgba(11,23,54,.06); }
+  .prod.rev .prod-img { order: 2; }
+  .prod-img { position: relative; display: block; background: var(--navy); min-height: 100%; overflow: hidden; }
+  .prod-img { display: flex; align-items: center; }
+  .prod-img img { width: 100%; height: auto; object-fit: contain; transition: transform .6s; }
+  .prod-img:hover img { transform: scale(1.03); }
+  .prod-open { position: absolute; right: 16px; bottom: 16px; background: rgba(11,23,54,.85); color: #fff; font-size: 12px; padding: 7px 12px; border-radius: 99px; border: 1px solid var(--line-dark); }
+  .prod-body { padding: 32px; display: flex; flex-direction: column; }
+  .prod-tags { display: flex; flex-wrap: wrap; gap: 6px; font-size: 11px; }
+  .prod-tags span { border: 1px solid var(--line); border-radius: 99px; padding: 3px 10px; color: var(--ink-2); }
+  .prod-tags .t-ind { color: var(--deep); border-color: #BBD5F2; background: #EEF5FD; }
+  .prod-tags .t-scale.ent { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .prod h3 { font-size: 24px; font-weight: 800; margin: 14px 0 14px; line-height: 1.25; }
+  .prod-block { margin-bottom: 14px; }
+  .prod-block .lbl { font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--blue); margin-bottom: 4px; }
+  .prod-block p { color: var(--ink-2); font-size: 15px; }
+  .prod-block ul { list-style: none; display: grid; gap: 6px; }
+  .prod-block li { position: relative; padding-left: 20px; color: var(--ink-2); font-size: 14.5px; line-height: 1.55; }
+  .prod-block li::before { content: ""; position: absolute; left: 2px; top: 9px; width: 8px; height: 8px; border-radius: 2px; background: linear-gradient(135deg, var(--blue), var(--glow)); }
+  .prod-foot { margin-top: auto; padding-top: 16px; border-top: 1px dashed var(--line); display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .prod-foot .stack { display: flex; gap: 6px; flex-wrap: wrap; font-size: 11px; }
+  .prod-foot .stack span { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 6px; padding: 3px 8px; color: var(--ink-2); }
+  .prod-foot .btn { padding: 10px 16px; font-size: 14px; }
+  .more { margin-top: 28px; display: grid; grid-template-columns: 1fr 1.3fr; gap: 32px; align-items: center; background: var(--navy); color: var(--on-dark); border-radius: 22px; padding: 36px; position: relative; overflow: hidden; }
+  .more::after { content: ""; position: absolute; width: 360px; height: 360px; right: -120px; top: -140px; background: radial-gradient(circle, rgba(56,189,248,.3), transparent 65%); }
+  .more h3 { font-size: 26px; font-weight: 800; color: #fff; }
+  .more p { color: var(--on-dark-2); margin: 8px 0 20px; }
+  .more-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; position: relative; z-index: 1; }
+  .more-list li { border: 1px solid var(--line-dark); background: rgba(255,255,255,.04); border-radius: 12px; padding: 12px 14px; font-size: 14px; }
+  .prod-note { margin-top: 14px; font-size: 12px; color: var(--ink-3); }
+  @media (max-width: 900px) {
+    .prod { grid-template-columns: 1fr; }
+    .prod.rev .prod-img { order: 0; }
+    .prod-img { aspect-ratio: 16/10; min-height: 0; }
+    .prod-body { padding: 24px 20px; }
+    .more { grid-template-columns: 1fr; padding: 26px 20px; }
+  }
+  @media (max-width: 560px) { .more-list { grid-template-columns: 1fr; } }
+
+  /* BUILD PROCESS */
+  .bp { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 40px; counter-reset: s; }
+  .bp li { border: 1px solid var(--line-dark); background: rgba(255,255,255,.03); border-radius: var(--radius); padding: 22px; position: relative; }
+  .bp li:not(:last-child)::after { content: "→"; position: absolute; right: -14px; top: 26px; color: var(--glow); font-size: 16px; }
+  .bp .n { color: var(--glow); font-size: 13px; }
+  .bp b { display: block; font-size: 18px; color: #fff; margin: 8px 0 6px; }
+  .bp p { color: var(--on-dark-2); font-size: 14.5px; }
+  .stack-strip { margin-top: 32px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .stack-strip .lbl { font-size: 12px; color: var(--on-dark-2); letter-spacing: 1.2px; text-transform: uppercase; }
+  .stack-strip div { display: flex; gap: 8px; flex-wrap: wrap; }
+  .stack-strip div span { font-size: 12.5px; color: #CFE3FF; border: 1px solid var(--line-dark); border-radius: 8px; padding: 5px 11px; }
+  @media (max-width: 900px) { .bp { grid-template-columns: 1fr 1fr; } .bp li::after { display: none; } }
+  @media (max-width: 560px) { .bp { grid-template-columns: 1fr; } }
+
   /* SEGMENTS */
   .seg { display: grid; grid-template-columns: 180px 1fr 1fr; margin-top: 40px; background: #fff; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; }
   .seg-col { padding: 20px 22px; border-bottom: 1px solid var(--line); }
@@ -461,6 +587,10 @@ const year = new Date().getFullYear();
   @media (max-width: 560px) { .logos { grid-template-columns: 1fr 1fr; } .st-grid { grid-template-columns: 1fr; } }
 
   /* PROJECTS */
+  .pj-wrap { display: flex; flex-direction: column; gap: 8px; }
+  .pj-wrap .pj { flex: 1; }
+  .pj-demo { font-size: 12.5px; color: var(--glow); padding-left: 4px; }
+  .pj-demo:hover { text-decoration: underline; }
   .pj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
   .pj { display: flex; flex-direction: column; border: 1px solid var(--line-dark); border-radius: var(--radius); padding: 0 24px 24px; overflow: hidden; background: rgba(255,255,255,.03); transition: transform .3s, border-color .3s, box-shadow .3s; }
   .pj:hover { transform: translateY(-4px); border-color: rgba(56,189,248,.6); box-shadow: 0 16px 40px rgba(30,136,229,.25); }
